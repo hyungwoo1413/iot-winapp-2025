@@ -482,6 +482,10 @@ IoT 개발자 C#/WinApp 리포지토리 2025
         - 딕셔너리로 콤보박스 데이터 할당
 
         <img src="./image/cs0009.png" width="600">
+        
+        https://github.com/user-attachments/assets/20bd154d-9817-4279-8c05-168b1777be15
+
+
 
     4. 파일입출력 - [소스](./day04/Day04Study/SyntaxWinApp03/FrmMain.cs)
         - 파일 쓰기, 읽기 기능
