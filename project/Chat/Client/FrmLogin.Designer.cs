@@ -32,8 +32,8 @@
             label1 = new Label();
             TxtPassword = new TextBox();
             label2 = new Label();
-            Btn_login = new Button();
-            Btn_join = new Button();
+            BtnLogin = new Button();
+            BtnJoin = new Button();
             SuspendLayout();
             // 
             // TxtId
@@ -42,7 +42,7 @@
             TxtId.Location = new Point(112, 50);
             TxtId.Name = "TxtId";
             TxtId.Size = new Size(165, 27);
-            TxtId.TabIndex = 0;
+            TxtId.TabIndex = 1;
             // 
             // label1
             // 
@@ -59,7 +59,7 @@
             TxtPassword.Location = new Point(112, 108);
             TxtPassword.Name = "TxtPassword";
             TxtPassword.Size = new Size(165, 27);
-            TxtPassword.TabIndex = 0;
+            TxtPassword.TabIndex = 2;
             // 
             // label2
             // 
@@ -70,33 +70,33 @@
             label2.TabIndex = 1;
             label2.Text = "비밀번호";
             // 
-            // Btn_login
+            // BtnLogin
             // 
-            Btn_login.Location = new Point(198, 158);
-            Btn_login.Name = "Btn_login";
-            Btn_login.Size = new Size(79, 32);
-            Btn_login.TabIndex = 2;
-            Btn_login.Text = "로그인";
-            Btn_login.UseVisualStyleBackColor = true;
-            Btn_login.Click += Btn_login_Click;
+            BtnLogin.Location = new Point(198, 158);
+            BtnLogin.Name = "BtnLogin";
+            BtnLogin.Size = new Size(79, 32);
+            BtnLogin.TabIndex = 3;
+            BtnLogin.Text = "로그인";
+            BtnLogin.UseVisualStyleBackColor = true;
+            BtnLogin.Click += BtnLogin_Click;
             // 
-            // Btn_join
+            // BtnJoin
             // 
-            Btn_join.Location = new Point(112, 158);
-            Btn_join.Name = "Btn_join";
-            Btn_join.Size = new Size(79, 32);
-            Btn_join.TabIndex = 2;
-            Btn_join.Text = "회원가입";
-            Btn_join.UseVisualStyleBackColor = true;
-            Btn_join.Click += Btn_join_Click;
+            BtnJoin.Location = new Point(112, 158);
+            BtnJoin.Name = "BtnJoin";
+            BtnJoin.Size = new Size(79, 32);
+            BtnJoin.TabIndex = 4;
+            BtnJoin.Text = "회원가입";
+            BtnJoin.UseVisualStyleBackColor = true;
+            BtnJoin.Click += BtnJoin_Click;
             // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(383, 229);
-            Controls.Add(Btn_join);
-            Controls.Add(Btn_login);
+            Controls.Add(BtnJoin);
+            Controls.Add(BtnLogin);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(TxtPassword);
@@ -118,7 +118,7 @@
         private Label label1;
         private TextBox TxtPassword;
         private Label label2;
-        private Button Btn_login;
-        private Button Btn_join;
+        private Button BtnLogin;
+        private Button BtnJoin;
     }
 }

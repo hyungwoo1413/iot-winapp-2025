@@ -6,8 +6,9 @@ namespace Client
 {
     public partial class FrmLogin : Form
     {
-        private TcpClient client;
-        private NetworkStream stream;
+        public TcpClient Client { get; private set; }
+        public NetworkStream Stream { get; private set; }
+        public string UserId { get; private set; }
 
         public FrmLogin()
         {
@@ -18,8 +19,8 @@ namespace Client
         {
             try
             {
-                client = new TcpClient("127.0.0.1", 8080);  // 서버 연결
-                stream = client.GetStream();
+                this.Client = new TcpClient("127.0.0.1", 8080);  // 서버 연결
+                this.Stream = Client.GetStream();
             }
             catch (Exception ex)
             {
@@ -27,42 +28,34 @@ namespace Client
                 this.Close();
             }
         }
+        private void BtnJoin_Click(object sender, EventArgs e)
+        {
 
-        private void Btn_join_Click(object sender, EventArgs e)
+        }
+
+        private void BtnLogin_Click(object sender, EventArgs e)
         {
             string id = TxtId.Text.Trim();
             string pw = TxtPassword.Text.Trim();
 
             string loginMsg = $"LOGIN {id} {pw}";
             byte[] buffer = Encoding.UTF8.GetBytes(loginMsg);
-            stream.Write(buffer, 0, buffer.Length);
+            this.Stream.Write(buffer, 0, buffer.Length);
 
             byte[] recvBuffer = new byte[1024];
-            int len = stream.Read(recvBuffer, 0, recvBuffer.Length);
+            int len = this.Stream.Read(recvBuffer, 0, recvBuffer.Length);
             string response = Encoding.UTF8.GetString(recvBuffer, 0, len);
 
             if (response.Contains("LOGIN TRUE"))
             {
-                FrmMain chatForm = new FrmMain(client, stream, id);
-                chatForm.Show();
-                this.Hide();
+                this.UserId = id;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-            else
+            else if (response.Contains("LOGIN FALSE"))
             {
                 MessageBox.Show("로그인 실패!");
             }
         }
-
-        private void Btn_login_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-
-            using (FrmMain chatForm = new FrmMain(client, stream, TxtId.Text))
-            {
-                chatForm.ShowDialog();
-            }
-            this.Close();
-        }
-
     }
 }
