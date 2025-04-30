@@ -21,10 +21,11 @@ namespace Client
             {
                 this.Client = new TcpClient("127.0.0.1", 8080);  // 서버 연결
                 this.Stream = Client.GetStream();
+                MessageBox.Show("서버 연결 성공");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("서버 연결 실패: " + ex.Message);
+                MessageBox.Show("서버 연결 실패");
                 this.Close();
             }
         }
