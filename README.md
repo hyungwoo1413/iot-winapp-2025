@@ -962,7 +962,8 @@ IoT 개발자 C#/WinApp 리포지토리 2025
     6. MainWindow.xaml
         - Window -> mah.MetroWindow로 변경
     7. 실행결과
-        <img src="./image/cs/cs0020.png" width="600">
+
+    <img src="./image/cs/cs0020.png" width="600">
 
     8. Theme - Light, Dark 2개
     9. Accent - Amber ~ Yellow 총 23개

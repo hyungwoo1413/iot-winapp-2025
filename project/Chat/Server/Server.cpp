@@ -9,6 +9,32 @@ std::vector<std::shared_ptr<tcp::socket>> sockets;
 std::mutex sockets_mutex;
 std::vector<std::string> ids;
 
+std::mutex user_mutex;
+std::map<std::string, std::string> user_db; // <ID, Password>
+
+/* 회원가입 */
+void join(std::istringstream& iss, std::shared_ptr<tcp::socket> socket, int num) {
+	std::string id, pw;
+	iss >> id >> pw;
+
+	std::string response;
+
+	{
+		std::lock_guard<std::mutex> lock(user_mutex);
+		if (user_db.find(id) != user_db.end()) {
+			response = "JOIN FAIL";  // 이미 존재하는 ID
+			std::cout << "[" << num << "] " << "회원가입 실패 - ID 중복 (" << id << ")" << std::endl;
+		}
+		else {
+			user_db[id] = pw;
+			response = "JOIN SUCCESS";
+			std::cout << "[" << num << "] " << "회원가입 성공 (" << id << ")" << std::endl;
+		}
+	}
+
+	asio::write(*socket, asio::buffer(response));
+}
+
 /* 로그인 */
 void login(std::istringstream& iss, std::shared_ptr<tcp::socket> socket, int num) {
 	std::string id, pw;
@@ -66,14 +92,14 @@ void handler(std::shared_ptr<tcp::socket> socket, int num) {
 			std::string command;
 			iss >> command;
 
-			if (command == "LOGIN") {
+			if (command == "JOIN") {
+				join(iss, socket, num);
+			}
+			else if (command == "LOGIN") {
 				login(iss, socket, num);
 			}
 			else if (command == "CHAT") {
 				chat(iss);
-			}
-			else if (command == "") {
-
 			}
 			else {
 				std::cout << "[" << num << "] 알 수 없는 명령: " << command << std::endl;
