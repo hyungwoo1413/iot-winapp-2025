@@ -963,7 +963,7 @@ IoT 개발자 C#/WinApp 리포지토리 2025
         - Window -> mah.MetroWindow로 변경
     7. 실행결과
 
-    <img src="./image/cs/cs0020.png" width="600">
+        <img src="./image/cs/cs0020.png" width="600">
 
     8. Theme - Light, Dark 2개
     9. Accent - Amber ~ Yellow 총 23개
@@ -975,8 +975,11 @@ IoT 개발자 C#/WinApp 리포지토리 2025
 
 ## 9일차
 
-### C# 응용 - WPF
-- WPF 기본
+### MahApps.Metro 프레임워크
+- 컨트롤 사용법
+
+### WPF UI 프레임워크
+- 기본 사용법
 
 
 ## 10일차
