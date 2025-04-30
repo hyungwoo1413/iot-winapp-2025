@@ -1052,7 +1052,12 @@ IoT 개발자 C#/WinApp 리포지토리 2025
 
     - 실행결과
 
+        [Dark Theme]
         <img src="./image/cs/cs0022.png" width="600">
+
+        [Light Theme]
+        <img src="./image/cs/cs0023.png" width="600">
+
 
 ## 10일차
 
