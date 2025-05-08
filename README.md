@@ -1061,6 +1061,12 @@ IoT 개발자 C#/WinApp 리포지토리 2025
 
 ## 10일차
 
+https://github.com/user-attachments/assets/8d0e4114-64a1-445e-b4bf-a8a5ab5843ea
+
+
+https://github.com/user-attachments/assets/9a19106e-f7f7-43b5-9875-bc5804a74782
+
+
 ### 코딩테스트
 1. 서버 (C++)
     - ASIO 기반 TCP 서버로 동작
@@ -1068,6 +1074,9 @@ IoT 개발자 C#/WinApp 리포지토리 2025
     - LOGIN: 로그인 처리 (비밀번호 일치 여부 확인)
     - CHAT: 채팅 메시지를 모든 클라이언트에게 브로드캐스트
     - 클라이언트 접속 시마다 독립된 쓰레드에서 handler 실행
+
+
+
     - user_db: 메모리 기반 유저 정보 저장 (map<string, UserInfo>)
 
 2. 클라이언트 (C# WinForms)
