@@ -1088,17 +1088,14 @@ https://github.com/user-attachments/assets/9a19106e-f7f7-43b5-9875-bc5804a74782
         - 응답이 LOGIN TRUE일 경우 DialogResult.OK로 메인폼 전환
         - 회원가입 버튼 클릭 시 FrmJoin 폼 호출
         - Enter 키 입력 시 로그인
-        <img src="./toyproject/image/1.png" width="400">
 
     - 회원가입 폼 – FrmJoin.cs, FrmJoin.Designer.cs
         - 사용자 입력 (ID, 비밀번호, 비밀번호 확인, 이름) 확인 후 JOIN 메시지 전송
         - 응답이 JOIN SUCCESS → 회원가입 성공 메시지 출력
         - 응답이 JOIN FAIL → 중복 ID 경고 메시지 출력
-        <img src="./toyproject/image/3.png" width="400">
 
     - 채팅 폼 – FrmMain.cs, FrmMain.Designer.cs
         - 로그인 성공 후 사용자에게 채팅 화면 제공
         - 채팅 입력 후 CHAT 메시지를 서버로 전송
         - 서버로부터 수신한 CHAT 메시지를 실시간으로 ListBox에 표시
         - 별도의 Thread로 수신 처리 → UI와 비동기 동작
-        <img src="./toyproject/image/6.png" width="400">
