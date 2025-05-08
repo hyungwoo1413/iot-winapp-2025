@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TxtId = new TextBox();
+            TxtID = new TextBox();
             label1 = new Label();
-            TxtPassword = new TextBox();
+            TxtPW = new TextBox();
             label2 = new Label();
             BtnLogin = new Button();
             BtnJoin = new Button();
             SuspendLayout();
             // 
-            // TxtId
+            // TxtID
             // 
-            TxtId.Font = new Font("나눔고딕", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            TxtId.Location = new Point(112, 50);
-            TxtId.Name = "TxtId";
-            TxtId.Size = new Size(165, 27);
-            TxtId.TabIndex = 1;
+            TxtID.Font = new Font("나눔고딕", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            TxtID.Location = new Point(112, 50);
+            TxtID.Name = "TxtID";
+            TxtID.Size = new Size(165, 27);
+            TxtID.TabIndex = 1;
+            TxtID.KeyDown += TxtID_KeyDown;
             // 
             // label1
             // 
@@ -53,13 +54,14 @@
             label1.TabIndex = 1;
             label1.Text = "아이디";
             // 
-            // TxtPassword
+            // TxtPW
             // 
-            TxtPassword.Font = new Font("나눔고딕", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            TxtPassword.Location = new Point(112, 108);
-            TxtPassword.Name = "TxtPassword";
-            TxtPassword.Size = new Size(165, 27);
-            TxtPassword.TabIndex = 2;
+            TxtPW.Font = new Font("나눔고딕", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            TxtPW.Location = new Point(112, 108);
+            TxtPW.Name = "TxtPW";
+            TxtPW.Size = new Size(165, 27);
+            TxtPW.TabIndex = 2;
+            TxtPW.KeyDown += TxtPW_KeyDown;
             // 
             // label2
             // 
@@ -75,7 +77,7 @@
             BtnLogin.Location = new Point(198, 158);
             BtnLogin.Name = "BtnLogin";
             BtnLogin.Size = new Size(79, 32);
-            BtnLogin.TabIndex = 3;
+            BtnLogin.TabIndex = 4;
             BtnLogin.Text = "로그인";
             BtnLogin.UseVisualStyleBackColor = true;
             BtnLogin.Click += BtnLogin_Click;
@@ -85,7 +87,7 @@
             BtnJoin.Location = new Point(112, 158);
             BtnJoin.Name = "BtnJoin";
             BtnJoin.Size = new Size(79, 32);
-            BtnJoin.TabIndex = 4;
+            BtnJoin.TabIndex = 3;
             BtnJoin.Text = "회원가입";
             BtnJoin.UseVisualStyleBackColor = true;
             BtnJoin.Click += BtnJoin_Click;
@@ -94,13 +96,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(383, 229);
+            ClientSize = new Size(384, 229);
             Controls.Add(BtnJoin);
             Controls.Add(BtnLogin);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(TxtPassword);
-            Controls.Add(TxtId);
+            Controls.Add(TxtPW);
+            Controls.Add(TxtID);
             Font = new Font("나눔고딕", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 129);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -114,9 +116,9 @@
 
         #endregion
 
-        private TextBox TxtId;
+        private TextBox TxtID;
         private Label label1;
-        private TextBox TxtPassword;
+        private TextBox TxtPW;
         private Label label2;
         private Button BtnLogin;
         private Button BtnJoin;

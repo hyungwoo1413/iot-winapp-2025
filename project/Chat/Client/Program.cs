@@ -16,7 +16,7 @@
             if (result == DialogResult.OK)
             {
                 // FrmLogin에서 Client, Stream, ID 정보를 전달받음
-                FrmMain mainForm = new FrmMain(loginForm.Client, loginForm.Stream, loginForm.UserId);
+                FrmMain mainForm = new FrmMain(loginForm.Client, loginForm.Stream, loginForm.UserId, loginForm.UserName);
                 Application.Run(mainForm);  // 이제 FrmMain이 메인폼처럼 동작
             }
         }

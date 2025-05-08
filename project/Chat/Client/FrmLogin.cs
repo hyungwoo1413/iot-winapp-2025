@@ -9,6 +9,7 @@ namespace Client
         public TcpClient Client { get; private set; }
         public NetworkStream Stream { get; private set; }
         public string UserId { get; private set; }
+        public string UserName { get; private set; }
 
         public FrmLogin()
         {
@@ -31,13 +32,14 @@ namespace Client
         }
         private void BtnJoin_Click(object sender, EventArgs e)
         {
-
+            FrmJoin joinForm = new FrmJoin(this.Client, this.Stream);  // 연결 정보 전달
+            joinForm.ShowDialog();
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            string id = TxtId.Text.Trim();
-            string pw = TxtPassword.Text.Trim();
+            string id = TxtID.Text.Trim();
+            string pw = TxtPW.Text.Trim();
 
             string loginMsg = $"LOGIN {id} {pw}";
             byte[] buffer = Encoding.UTF8.GetBytes(loginMsg);
@@ -49,14 +51,37 @@ namespace Client
 
             if (response.Contains("LOGIN TRUE"))
             {
-                this.UserId = id;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                string[] tokens = response.Split(' ');
+                if (tokens.Length >= 3)
+                {
+                    this.UserId = id;
+                    string username = tokens[2];
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
             else if (response.Contains("LOGIN FALSE"))
             {
                 MessageBox.Show("로그인 실패!");
             }
         }
+        private void TxtID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BtnLogin.PerformClick();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void TxtPW_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BtnLogin.PerformClick();
+                e.SuppressKeyPress = true;
+            }
+        }
+
     }
 }

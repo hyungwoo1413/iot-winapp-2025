@@ -10,12 +10,17 @@ std::mutex sockets_mutex;
 std::vector<std::string> ids;
 
 std::mutex user_mutex;
-std::map<std::string, std::string> user_db; // <ID, Password>
+
+struct UserInfo {
+	std::string pw;
+	std::string name;
+};
+std::map<std::string, UserInfo> user_db; // 유저 정보
 
 /* 회원가입 */
 void join(std::istringstream& iss, std::shared_ptr<tcp::socket> socket, int num) {
-	std::string id, pw;
-	iss >> id >> pw;
+	std::string id, pw, name;
+	iss >> id >> pw >> name;
 
 	std::string response;
 
@@ -23,12 +28,12 @@ void join(std::istringstream& iss, std::shared_ptr<tcp::socket> socket, int num)
 		std::lock_guard<std::mutex> lock(user_mutex);
 		if (user_db.find(id) != user_db.end()) {
 			response = "JOIN FAIL";  // 이미 존재하는 ID
-			std::cout << "[" << num << "] " << "회원가입 실패 - ID 중복 (" << id << ")" << std::endl;
+			std::cout << "[" << num << "] " << "회원가입 실패 (" << id << ")" << std::endl;
 		}
 		else {
-			user_db[id] = pw;
+			user_db[id] = { pw, name };
 			response = "JOIN SUCCESS";
-			std::cout << "[" << num << "] " << "회원가입 성공 (" << id << ")" << std::endl;
+			std::cout << "[" << num << "] " << "회원가입 성공 (" << id << ", " << pw << ")" << std::endl;
 		}
 	}
 
@@ -42,14 +47,22 @@ void login(std::istringstream& iss, std::shared_ptr<tcp::socket> socket, int num
 
 	std::string response;
 
-	if (id == "abc" && pw == "123") {
-		std::cout << "[" << num << "] " << "로그인 성공" << "(" << id << ", " << pw << ")" << std::endl;
-		response = "LOGIN TRUE";
+	{
+		std::lock_guard<std::mutex> lock(user_mutex);
+		auto it = user_db.find(id);
+
+		if (it != user_db.end() && it->second.pw == pw) {
+			// 로그인 성공
+			std::cout << "[" << num << "] 로그인 성공 (" << id << ", " << pw << ")" << std::endl;
+			response = "LOGIN TRUE " + it->second.name;
+		}
+		else {
+			// 로그인 실패
+			std::cout << "[" << num << "] 로그인 실패 (" << id << ", " << pw << ")" << std::endl;
+			response = "LOGIN FALSE";
+		}
 	}
-	else {
-		std::cout << "[" << num << "] " << "로그인 실패" << "(" << id << ", " << pw << ")" << std::endl;
-		response = "LOGIN FALSE";
-	}
+
 	asio::write(*socket, asio::buffer(response));
 }
 
@@ -58,9 +71,22 @@ void chat(std::istringstream& iss) {
 	std::string id, chat_msg;
 	iss >> id;
 	std::getline(iss >> std::ws, chat_msg);
+
 	std::cout << "[" << id << "] " << chat_msg << std::endl;
 
-	std::string response = "CHAT " + id + " " + chat_msg;
+	std::string name;
+	{
+		std::lock_guard<std::mutex> lock(user_mutex);
+		auto it = user_db.find(id);
+		if (it != user_db.end()) {
+			name = it->second.name;
+		}
+		else {
+			name = id;  // fallback
+		}
+	}
+
+	std::string response = "CHAT " + name + " " + chat_msg;
 	std::lock_guard<std::mutex> lock(sockets_mutex);
 	for (auto& socket : sockets) {
 		asio::error_code ec;
@@ -128,7 +154,7 @@ int main() {
 			acceptor.accept(*socket);
 
 			int num = num_counter++;
-			std::cout << "[" << num << "] " << "연결 완료" << std::endl;
+			std::cout << "[" << num << "] " << "연결 성공" << std::endl;
 
 			std::thread t(handler, socket, num);
 			t.detach();

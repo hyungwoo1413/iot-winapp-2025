@@ -30,26 +30,22 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            TxtChatOutput = new TextBox();
             TxtChatInput = new TextBox();
             imageList1 = new ImageList(components);
+            BtnChatInput = new Button();
+            LsbChatOutput = new ListBox();
+            LsbUser = new ListBox();
             button1 = new Button();
             SuspendLayout();
-            // 
-            // TxtChatOutput
-            // 
-            TxtChatOutput.Location = new Point(12, 12);
-            TxtChatOutput.Multiline = true;
-            TxtChatOutput.Name = "TxtChatOutput";
-            TxtChatOutput.Size = new Size(440, 486);
-            TxtChatOutput.TabIndex = 0;
             // 
             // TxtChatInput
             // 
             TxtChatInput.Location = new Point(12, 522);
+            TxtChatInput.MaxLength = 30;
             TxtChatInput.Name = "TxtChatInput";
             TxtChatInput.Size = new Size(411, 23);
             TxtChatInput.TabIndex = 1;
+            TxtChatInput.KeyDown += TxtChatInput_KeyDown;
             // 
             // imageList1
             // 
@@ -58,39 +54,71 @@
             imageList1.TransparentColor = Color.Transparent;
             imageList1.Images.SetKeyName(0, "next.png");
             // 
+            // BtnChatInput
+            // 
+            BtnChatInput.BackColor = Color.Transparent;
+            BtnChatInput.FlatAppearance.BorderSize = 0;
+            BtnChatInput.FlatStyle = FlatStyle.Flat;
+            BtnChatInput.Image = (Image)resources.GetObject("BtnChatInput.Image");
+            BtnChatInput.Location = new Point(429, 522);
+            BtnChatInput.Name = "BtnChatInput";
+            BtnChatInput.Size = new Size(23, 23);
+            BtnChatInput.TabIndex = 2;
+            BtnChatInput.UseVisualStyleBackColor = false;
+            BtnChatInput.Click += BtnChatInput_Click;
+            // 
+            // LsbChatOutput
+            // 
+            LsbChatOutput.FormattingEnabled = true;
+            LsbChatOutput.ItemHeight = 15;
+            LsbChatOutput.Location = new Point(12, 12);
+            LsbChatOutput.Name = "LsbChatOutput";
+            LsbChatOutput.Size = new Size(440, 499);
+            LsbChatOutput.TabIndex = 3;
+            // 
+            // LsbUser
+            // 
+            LsbUser.FormattingEnabled = true;
+            LsbUser.ItemHeight = 15;
+            LsbUser.Location = new Point(458, 12);
+            LsbUser.Name = "LsbUser";
+            LsbUser.Size = new Size(174, 259);
+            LsbUser.TabIndex = 4;
+            // 
             // button1
             // 
-            button1.BackColor = Color.Transparent;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(429, 522);
+            button1.Location = new Point(539, 518);
             button1.Name = "button1";
-            button1.Size = new Size(23, 23);
-            button1.TabIndex = 2;
-            button1.UseVisualStyleBackColor = false;
+            button1.Size = new Size(93, 27);
+            button1.TabIndex = 5;
+            button1.Text = "나가기";
+            button1.UseVisualStyleBackColor = true;
             // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(464, 561);
+            ClientSize = new Size(644, 561);
             Controls.Add(button1);
+            Controls.Add(LsbUser);
+            Controls.Add(LsbChatOutput);
+            Controls.Add(BtnChatInput);
             Controls.Add(TxtChatInput);
-            Controls.Add(TxtChatOutput);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += FrmMain_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private TextBox TxtChatOutput;
         private TextBox TxtChatInput;
         private ImageList imageList1;
+        private Button BtnChatInput;
+        private ListBox LsbChatOutput;
+        private ListBox LsbUser;
         private Button button1;
     }
 }
