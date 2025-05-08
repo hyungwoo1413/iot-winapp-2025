@@ -1060,13 +1060,6 @@ IoT 개발자 C#/WinApp 리포지토리 2025
 
 
 ## 10일차
-<img src="./toyproject/image/1.png" width="400">
-<img src="./toyproject/image/2.png" width="600">
-<img src="./toyproject/image/3.png" width="400">
-<img src="./toyproject/image/4.png" width="600">
-<img src="./toyproject/image/5.png" width="400">
-<img src="./toyproject/image/6.png" width="400">
-
 
 ### 코딩테스트
 1. 서버 (C++)
@@ -1081,20 +1074,22 @@ IoT 개발자 C#/WinApp 리포지토리 2025
     - 프로그램 시작 – Program.cs
         - FrmLogin 폼을 실행 → 로그인 성공 시 FrmMain 폼 실행 
         - 로그인에 필요한 TcpClient, NetworkStream, 사용자 정보 전달
-
     - 로그인 폼 – FrmLogin.cs, FrmLogin.Designer.cs
         - 서버에 LOGIN ID PW 메시지를 전송
         - 응답이 LOGIN TRUE일 경우 DialogResult.OK로 메인폼 전환
         - 회원가입 버튼 클릭 시 FrmJoin 폼 호출
         - Enter 키 입력 시 로그인
+        <img src="./toyproject/image/1.png" width="300">
 
     - 회원가입 폼 – FrmJoin.cs, FrmJoin.Designer.cs
         - 사용자 입력 (ID, 비밀번호, 비밀번호 확인, 이름) 확인 후 JOIN 메시지 전송
         - 응답이 JOIN SUCCESS → 회원가입 성공 메시지 출력
         - 응답이 JOIN FAIL → 중복 ID 경고 메시지 출력
+        <img src="./toyproject/image/3.png" width="300">
 
     - 채팅 폼 – FrmMain.cs, FrmMain.Designer.cs
         - 로그인 성공 후 사용자에게 채팅 화면 제공
         - 채팅 입력 후 CHAT 메시지를 서버로 전송
         - 서버로부터 수신한 CHAT 메시지를 실시간으로 ListBox에 표시
         - 별도의 Thread로 수신 처리 → UI와 비동기 동작
+        <img src="./toyproject/image/6.png" width="300">
