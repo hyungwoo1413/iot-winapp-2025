@@ -97,9 +97,5 @@ namespace Client
             }
         }
 
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-            LsbUser.Items.Add($"{userName}");
-        }
     }
 }

@@ -34,8 +34,6 @@
             imageList1 = new ImageList(components);
             BtnChatInput = new Button();
             LsbChatOutput = new ListBox();
-            LsbUser = new ListBox();
-            button1 = new Button();
             SuspendLayout();
             // 
             // TxtChatInput
@@ -76,31 +74,11 @@
             LsbChatOutput.Size = new Size(440, 499);
             LsbChatOutput.TabIndex = 3;
             // 
-            // LsbUser
-            // 
-            LsbUser.FormattingEnabled = true;
-            LsbUser.ItemHeight = 15;
-            LsbUser.Location = new Point(458, 12);
-            LsbUser.Name = "LsbUser";
-            LsbUser.Size = new Size(174, 259);
-            LsbUser.TabIndex = 4;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(539, 518);
-            button1.Name = "button1";
-            button1.Size = new Size(93, 27);
-            button1.TabIndex = 5;
-            button1.Text = "나가기";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(644, 561);
-            Controls.Add(button1);
-            Controls.Add(LsbUser);
+            ClientSize = new Size(465, 561);
             Controls.Add(LsbChatOutput);
             Controls.Add(BtnChatInput);
             Controls.Add(TxtChatInput);
@@ -108,7 +86,6 @@
             MaximizeBox = false;
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Load += FrmMain_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -118,7 +95,5 @@
         private ImageList imageList1;
         private Button BtnChatInput;
         private ListBox LsbChatOutput;
-        private ListBox LsbUser;
-        private Button button1;
     }
 }
